@@ -1,0 +1,20 @@
+[
+  {
+    "name": "/deletions",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "View recent deletion history"
+            }
+          }
+        ],
+        "send": {
+          "text": "/deletions"
+        }
+      }
+    ]
+  }
+]
