@@ -1,19 +1,17 @@
 [
   {
-    "name": "/notify_admins_on_delete",
+    "name": "/notify_admins_on_delete toggles notifications",
     "steps": [
       {
+        "send": { "text": "/notify_admins_on_delete" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Toggle admin notifications for deletions"
+              "text": "Admin notifications are now OFF."
             }
           }
-        ],
-        "send": {
-          "text": "/notify_admins_on_delete"
-        }
+        ]
       }
     ]
   }

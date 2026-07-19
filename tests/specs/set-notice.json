@@ -1,19 +1,17 @@
 [
   {
-    "name": "/set_notice",
+    "name": "/set_notice toggles in-group notices",
     "steps": [
       {
+        "send": { "text": "/set_notice" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Toggle in-group deletion notices"
+              "text": "In-group deletion notices are now OFF."
             }
           }
-        ],
-        "send": {
-          "text": "/set_notice"
-        }
+        ]
       }
     ]
   }
