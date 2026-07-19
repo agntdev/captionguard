@@ -1,0 +1,20 @@
+[
+  {
+    "name": "/notify_admins_on_delete",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Toggle admin notifications for deletions"
+            }
+          }
+        ],
+        "send": {
+          "text": "/notify_admins_on_delete"
+        }
+      }
+    ]
+  }
+]
