@@ -1,19 +1,17 @@
 [
   {
-    "name": "/enable_captions",
+    "name": "/enable_captions enables enforcement",
     "steps": [
       {
+        "send": { "text": "/enable_captions" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Enable caption enforcement in this group"
+              "text": "Caption enforcement is now ON for this group."
             }
           }
-        ],
-        "send": {
-          "text": "/enable_captions"
-        }
+        ]
       }
     ]
   }

@@ -1,19 +1,17 @@
 [
   {
-    "name": "/disable_captions",
+    "name": "/disable_captions disables enforcement",
     "steps": [
       {
+        "send": { "text": "/disable_captions" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Disable caption enforcement"
+              "text": "Caption enforcement is now OFF."
             }
           }
-        ],
-        "send": {
-          "text": "/disable_captions"
-        }
+        ]
       }
     ]
   }

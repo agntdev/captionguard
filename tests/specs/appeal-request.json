@@ -1,19 +1,17 @@
 [
   {
-    "name": "Appeal",
+    "name": "Appeal deletion",
     "steps": [
       {
+        "send": { "callback": "appeal:request" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Appeal deletion to admins"
+              "text": "Appeal request received. An admin will review this shortly."
             }
           }
-        ],
-        "send": {
-          "callback": "appeal:request"
-        }
+        ]
       }
     ]
   }

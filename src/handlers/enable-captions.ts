@@ -1,15 +1,43 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import { inlineButton, inlineKeyboard, registerMainMenuItem } from "../toolkit/index.js";
+import { getGroupSettings, saveGroupSettings, isAdmin } from "../storage.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
+registerMainMenuItem({ label: "✅ Enable", data: "cmd:enable_captions", order: 10 });
 
-const composer = new Composer();
+const composer = new Composer<Ctx>();
 
 composer.command("enable_captions", async (ctx) => {
-  await ctx.reply("Enable caption enforcement in this group");
+  const chatId = ctx.chat?.id;
+  if (!chatId) return;
+  if (!isAdmin(ctx)) {
+    await ctx.reply("Only admins can change enforcement settings.");
+    return;
+  }
+  const settings = await getGroupSettings(chatId);
+  settings.enforcement_enabled = true;
+  await saveGroupSettings(chatId, settings);
+  const kb = inlineKeyboard([[inlineButton("⬅️ Back to menu", "menu:main")]]);
+  await ctx.reply("Caption enforcement is now ON for this group.", {
+    reply_markup: kb,
+  });
+});
+
+composer.callbackQuery("cmd:enable_captions", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  const chatId = ctx.chat?.id;
+  if (!chatId) return;
+  if (!isAdmin(ctx)) {
+    await ctx.reply("Only admins can change enforcement settings.");
+    return;
+  }
+  const settings = await getGroupSettings(chatId);
+  settings.enforcement_enabled = true;
+  await saveGroupSettings(chatId, settings);
+  const kb = inlineKeyboard([[inlineButton("⬅️ Back to menu", "menu:main")]]);
+  await ctx.editMessageText("Caption enforcement is now ON for this group.", {
+    reply_markup: kb,
+  });
 });
 
 export default composer;
