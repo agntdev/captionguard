@@ -1,0 +1,20 @@
+[
+  {
+    "name": "/disable_captions",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Disable caption enforcement"
+            }
+          }
+        ],
+        "send": {
+          "text": "/disable_captions"
+        }
+      }
+    ]
+  }
+]
